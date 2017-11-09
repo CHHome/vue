@@ -98,3 +98,7 @@ function getOuterHTML (el: Element): string {
 Vue.compile = compileToFunctions
 
 export default Vue
+
+//Vue构造函数第四层处理结果
+//1、缓存来自 /runtime/index 文件的 $mount 函数
+//2、在 Vue 上挂载 compile

@@ -49,7 +49,7 @@ export class Observer {
       augment(value, arrayMethods, arrayKeys)
       this.observeArray(value)
     } else {
-      this.walk(value)
+      this.walk(value)//遍历属性
     }
   }
 
@@ -61,7 +61,7 @@ export class Observer {
   walk (obj: Object) {
     const keys = Object.keys(obj)
     for (let i = 0; i < keys.length; i++) {
-      defineReactive(obj, keys[i], obj[keys[i]])
+      defineReactive(obj, keys[i], obj[keys[i]])//设置访问器属性
     }
   }
 
@@ -130,6 +130,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
  * Define a reactive property on an Object.
  */
 export function defineReactive (
+  //定义访问器属性
   obj: Object,
   key: string,
   val: any,

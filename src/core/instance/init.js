@@ -23,7 +23,7 @@ export function initMixin (Vue: Class<Component>) {
     if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
       startTag = `vue-perf-start:${vm._uid}`
       endTag = `vue-perf-end:${vm._uid}`
-      mark(startTag)
+      mark(startTag);
     }
 
     // a flag to avoid this being observed
@@ -35,8 +35,9 @@ export function initMixin (Vue: Class<Component>) {
       // internal component options needs special treatment.
       initInternalComponent(vm, options)
     } else {
+      //参数合并
       vm.$options = mergeOptions(
-        resolveConstructorOptions(vm.constructor),
+        resolveConstructorOptions(vm.constructor),//返回Vue.options
         options || {},
         vm
       )
@@ -52,11 +53,11 @@ export function initMixin (Vue: Class<Component>) {
     initLifecycle(vm)
     initEvents(vm)
     initRender(vm)
-    callHook(vm, 'beforeCreate')
+    callHook(vm, 'beforeCreate')//调用beforeCreate钩子函数
     initInjections(vm) // resolve injections before data/props
-    initState(vm)
+    initState(vm)//调用其他init方法，包括初始化data，methods，props等一些$options中具有的keys
     initProvide(vm) // resolve provide after data/props
-    callHook(vm, 'created')
+    callHook(vm, 'created')//调用Created钩子函数
 
     /* istanbul ignore if */
     if (process.env.NODE_ENV !== 'production' && config.performance && mark) {

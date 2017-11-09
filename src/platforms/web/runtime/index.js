@@ -68,3 +68,28 @@ Vue.nextTick(() => {
 }, 0)
 
 export default Vue
+
+
+//Vue构造函数第三层处理结果
+//
+// // 安装平台特定的utils
+// Vue.config.isUnknownElement = isUnknownElement
+// Vue.config.isReservedTag = isReservedTag
+// Vue.config.getTagNamespace = getTagNamespace
+// Vue.config.mustUseProp = mustUseProp
+// // 安装平台特定的 指令 和 组件
+// Vue.options = {
+//   components: {
+//     KeepAlive,
+//     Transition,
+//     TransitionGroup
+//   },
+//   directives: {
+//     model,
+//     show
+//   },
+//   filters: {},
+//   _base: Vue
+// }
+// Vue.prototype.__patch__
+// Vue.prototype.$mount

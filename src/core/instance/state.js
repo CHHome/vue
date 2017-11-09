@@ -36,6 +36,8 @@ const sharedPropertyDefinition = {
 }
 
 export function proxy (target: Object, sourceKey: string, key: string) {
+
+  //数据代理
   sharedPropertyDefinition.get = function proxyGetter () {
     return this[sourceKey][key]
   }
@@ -51,7 +53,7 @@ export function initState (vm: Component) {
   if (opts.props) initProps(vm, opts.props)
   if (opts.methods) initMethods(vm, opts.methods)
   if (opts.data) {
-    initData(vm)
+    initData(vm)//初始化数据
   } else {
     observe(vm._data = {}, true /* asRootData */)
   }
@@ -109,6 +111,7 @@ function initProps (vm: Component, propsOptions: Object) {
 
 function initData (vm: Component) {
   let data = vm.$options.data
+  //_data和data相同的引用
   data = vm._data = typeof data === 'function'
     ? getData(data, vm)
     : data || {}
@@ -142,11 +145,11 @@ function initData (vm: Component) {
         vm
       )
     } else if (!isReserved(key)) {
-      proxy(vm, `_data`, key)
+      proxy(vm, `_data`, key)//数据代理，实现this.xxx直接能访问vm.$options.data中的xxx
     }
   }
   // observe data
-  observe(data, true /* asRootData */)
+  observe(data, true /* asRootData */)//数据观测
 }
 
 function getData (data: Function, vm: Component): any {
